@@ -24,15 +24,32 @@ section{
 }
 
 .flexSongs{
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-self: center;
   padding: 20px;
+  box-sizing: border-box;
+}
+
+h2{
+  color: #fff;
+  font-size: 2rem;
 }
 
 .songComp{
   display: flex;
   justify-content: space-between;
   color: #fff;
+  align-items: center;
+}
+
+.addIcon{
+  width: 3%;
+  cursor: pointer;
+}
+
+img{
+  width: 100%;
+  height: 100%;
 }
