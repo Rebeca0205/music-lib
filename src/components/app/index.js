@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import Header from '../header';
 import SearchResults from '../searchResults';
 import Library from '../library';
@@ -21,22 +21,37 @@ let YOURSONGS = [
     {id: '9', songName:"The Dead Dance", artist:"Lady Gaga", duration:"2:00"}, 
 ]
 
-class AppComp extends Component {
+const AppComp = () => {
 
-    componentDidMount(){
-        console.log("Se logro cargar el header y las canciones")
-    }
+    const [library, setLibrary] = useState(YOURSONGS);
 
-    render(){
-        return(
-            <div className="App">
-                <Header appName="Mi Biblioteca Musical"/>
-                <SearchResults songList={SONGLIST}/>
-                <Library songList={YOURSONGS}/>
-            </div>
-            
-        )
-    }
-}
+    useEffect(() => {
+        const fetchSongs = async () => {
+            const response = SONGLIST;
+            console.log(response);
+        };
+
+        fetchSongs();
+    }, []);
+
+    const addSong = (song) => {
+        const exists = library.some((s) => s.id === song.id);
+        if (exists) return;
+
+        setLibrary(prev => [...prev, song]);
+    };
+
+    const removeSong = (songId) => {
+        setLibrary(prev => prev.filter(song => song.id !== songId));
+    };
+
+    return (
+        <div className="App">
+            <Header appName="Mi Biblioteca Musical"/>
+            <SearchResults songList={SONGLIST} onAddSong={addSong}/>
+            <Library songList={library} onRemoveSong={removeSong}/>
+        </div>
+    );
+};
 
 export default AppComp;

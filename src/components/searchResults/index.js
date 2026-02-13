@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Song from "../songs";
 
-const SearchResults = ({songList}) => {
+const SearchResults = ({songList, onAddSong}) => {
     const [busqueda, setBusqueda] = useState("");
 
     const handleInputChange = (e) => {
@@ -39,6 +39,7 @@ const SearchResults = ({songList}) => {
                                 songName={songName} 
                                 artist={artist} 
                                 duration={duration}
+                                onAdd={() => onAddSong(song)}
                             />
                         );
                     })

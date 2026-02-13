@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Song from "../songs";
 
-const Library = ({songList}) => {
+const Library = ({songList, onRemoveSong}) => {
     const [lista, setLista] = useState([]);
 
     useEffect(() => {
@@ -28,6 +28,7 @@ const Library = ({songList}) => {
                                 songName={songName} 
                                 artist={artist} 
                                 duration={duration}
+                                onRemove={() => onRemoveSong(id)}
                             />
                         );
                     })

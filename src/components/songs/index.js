@@ -1,13 +1,28 @@
 import React, {} from 'react';
 import Plus from './img/plus-circle.svg';
+import Minus from './img/minus-circle.svg';
 
-const Song = ({songName, artist, duration}) => {
+const Song = ({songName, artist, duration, onAdd, onRemove}) => {
+    const hasAdd = typeof onAdd === 'function';
+    const hasRemove = typeof onRemove === 'function';
+
     return(
         <div className='songComp'>
             <p>{songName}</p>
             <p>{artist}</p>
             <p>{duration}</p>
-            <i className='addIcon'><img src={Plus}/></i>
+            {hasAdd && (
+                <i className='addIcon' onClick={onAdd}>
+                    <img src={Plus} alt='Agregar'/>
+                </i>
+            )}
+
+            {hasRemove && (
+                <i className='addIcon' onClick={onRemove}>
+                    <img src={Minus} alt='Agregar'/>
+                </i>
+            )}
+            
         </div>
     )
 }
