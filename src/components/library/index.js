@@ -20,15 +20,14 @@ const Library = ({songList, onRemoveSong}) => {
             <article className="flexSongs">
                 {
                     lista.map(song => {
-                        const {id, songName, artist, duration} = song;
+                        const {idTrack, title, artist} = song;
 
                         return(
                             <Song 
-                                key={id} 
-                                songName={songName} 
+                                key={idTrack} 
+                                songName={title} 
                                 artist={artist} 
-                                duration={duration}
-                                onRemove={() => onRemoveSong(id)}
+                                onRemove={() => onRemoveSong(idTrack)}
                             />
                         );
                     })

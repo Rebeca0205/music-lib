@@ -1,44 +1,37 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Song from "../songs";
 
-const SearchResults = ({songList, onAddSong}) => {
-    const [busqueda, setBusqueda] = useState("");
+const SearchResults = ({songList, isLoading, error, onAddSong, searchTerm}) => {
+    if (isLoading) return <p>Cargando canciones...</p>;
+    if (error) return <p>{error}</p>;
+    if (!songList.length) return <p>No se encontraron canciones.</p>;
 
-    const handleInputChange = (e) => {
-        setBusqueda(e.target.value);
-    };
+    // const [busqueda, setBusqueda] = useState("");
+
+    // const handleInputChange = (e) => {
+    //     setBusqueda(e.target.value);
+    // };
 
     return(
         <section>
             <article>
                 <h2>Busqueda</h2>
-                <div>
-                    <input 
-                        type='text' 
-                        name="nombreCancion"
-                        value={busqueda}
-                        placeholder='Escribe una cancion'
-                        onChange={(e) => handleInputChange(e)}
-                    />
-                </div>
             </article>
             <article className="flexSongs">
                 {
                     songList.map(song => {
-                        const match = song.songName
-                        .toLowerCase()
-                        .includes(busqueda);
+                        const match = song.artist
+                        .includes(searchTerm.toLowerCase());
 
                         if (!match) return null;
 
-                        const {id, songName, artist, duration} = song;
+                        const {idTrack, title, artist} = song;
 
                         return(
                             <Song 
-                                key={id} 
-                                songName={songName} 
+                                key={idTrack} 
+                                songName={title} 
                                 artist={artist} 
-                                duration={duration}
                                 onAdd={() => onAddSong(song)}
                             />
                         );
