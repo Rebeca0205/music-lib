@@ -25,6 +25,7 @@ const Library = ({songList, onRemoveSong}) => {
                         return(
                             <Song 
                                 key={idTrack} 
+                                id={idTrack}
                                 songName={title} 
                                 artist={artist} 
                                 onRemove={() => onRemoveSong(idTrack)}

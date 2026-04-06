@@ -17,6 +17,7 @@
     "typescript": "^5.9.3",
     "web-vitals": "^2.1.4"
   },
+  "proxy": "https://theaudiodb.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

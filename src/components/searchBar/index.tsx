@@ -3,11 +3,13 @@ import React from "react"
 interface SearchBarProps {
     searchTerm: string;
     setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+    onSearch: () => void;
 }
 
-const SearchBar = ({searchTerm, setSearchTerm}: SearchBarProps) => {
+const SearchBar = ({searchTerm, setSearchTerm, onSearch}: SearchBarProps) => {
     const handleSubmit = (e:React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
+        onSearch();
     };
 
     return(

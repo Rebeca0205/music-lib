@@ -1,14 +1,18 @@
 import React, {} from 'react';
 import Plus from './img/plus-circle.svg';
 import Minus from './img/minus-circle.svg';
+import { Link } from 'react-router-dom';
 
-const Song = ({songName, artist, onAdd, onRemove}) => {
+const Song = ({id, songName, artist, onAdd, onRemove}) => {
     const hasAdd = typeof onAdd === 'function';
     const hasRemove = typeof onRemove === 'function';
 
     return(
         <div className='songComp'>
-            <p>{songName}</p>
+            <Link to={`/song/${id}`}>
+                <p>{songName}</p>
+            </Link>
+            {/* <p>{songName}</p> */}
             <p>{artist}</p>
             {hasAdd && (
                 <i className='addIcon' onClick={onAdd}>

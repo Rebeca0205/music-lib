@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 
 type Song = {
-  idTrack: string;
+  idTrack: number;
   title: string;
   album: string;
   artist: string;
@@ -38,16 +38,16 @@ const useFetchAlbums = (artist:string) => {
                 });
                 // Obtener álbumes del artista
                 const albumsResponse  = await axios.get(
-                    `https://theaudiodb.com/api/v1/json/2/searchalbum.php?s=${encodeURIComponent(artist)}`
+                    `/api/v1/json/2/searchalbum.php?s=${encodeURIComponent(artist)}`
                 );
          
-                const albums = (albumsResponse.data.album || []).slice(0, 5);
+                const albums = (albumsResponse.data.album || []).slice(0, 3);
 
                  // Obtener tracks de cada álbum
                 const tracksByAlbum = await Promise.all(
                     albums.map(async (album: any) => {
                         const tracksResponse = await axios.get(
-                            `https://www.theaudiodb.com/api/v1/json/2/track.php?m=${album.idAlbum}`
+                            `/api/v1/json/2/track.php?m=${album.idAlbum}`
                         );
 
                         const tracks = tracksResponse.data.track || [];
