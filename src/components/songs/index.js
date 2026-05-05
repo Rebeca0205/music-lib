@@ -2,31 +2,32 @@ import React, {} from 'react';
 import Plus from './img/plus-circle.svg';
 import Minus from './img/minus-circle.svg';
 import { Link } from 'react-router-dom';
+import { AddIcon, ImgIcon, NameSong, SongComp } from './styles';
 
-const Song = ({id, songName, artist, onAdd, onRemove}) => {
+const Song = ({id, songName, artist, onAdd, onRemove, isInLibrary}) => {
     const hasAdd = typeof onAdd === 'function';
     const hasRemove = typeof onRemove === 'function';
 
     return(
-        <div className='songComp'>
+        <SongComp>
             <Link to={`/song/${id}`}>
-                <p>{songName}</p>
+                <NameSong isInLibrary={isInLibrary}>{songName}</NameSong>
             </Link>
             {/* <p>{songName}</p> */}
             <p>{artist}</p>
             {hasAdd && (
-                <i className='addIcon' onClick={onAdd}>
-                    <img src={Plus} alt='Agregar'/>
-                </i>
+                <AddIcon onClick={onAdd}>
+                    <ImgIcon src={Plus} alt='Agregar'/>
+                </AddIcon>
             )}
 
             {hasRemove && (
-                <i className='addIcon' onClick={onRemove}>
-                    <img src={Minus} alt='Agregar'/>
-                </i>
+                <AddIcon onClick={onRemove}>
+                    <ImgIcon src={Minus} alt='Remover'/>
+                </AddIcon>
             )}
             
-        </div>
+        </SongComp>
     )
 }
 

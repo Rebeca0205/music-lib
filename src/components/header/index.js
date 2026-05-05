@@ -1,10 +1,11 @@
 import React, {} from 'react';
+import { AppHeader } from './styles';
 
 const Header = ({appName}) => {
     return(
-        <header className='App-header'>
+        <AppHeader>
             <h1>{appName}</h1>
-        </header>
+        </AppHeader>
     )
 }
 

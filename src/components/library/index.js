@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Song from "../songs";
+import { FlexSongs } from "./styles";
 
 const Library = ({songList, onRemoveSong}) => {
     const [lista, setLista] = useState([]);
@@ -17,7 +18,7 @@ const Library = ({songList, onRemoveSong}) => {
     return(
         <section>
             <h2>Mis Canciones</h2>
-            <article className="flexSongs">
+            <FlexSongs>
                 {
                     lista.map(song => {
                         const {idTrack, title, artist} = song;
@@ -33,7 +34,7 @@ const Library = ({songList, onRemoveSong}) => {
                         );
                     })
                 }
-            </article>   
+            </FlexSongs>   
         </section>
     )
 }

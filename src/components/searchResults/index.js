@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Song from "../songs";
+import { FlexSongs } from "./styles";
 
-const SearchResults = ({songList, isLoading, error, onAddSong}) => {
+const SearchResults = ({songList, isLoading, error, onAddSong, library}) => {
     if (isLoading) return <p style={{color: 'white'}}>Cargando canciones...</p>;
     if (error) return <p style={{color: 'red'}}>{error}</p>;
     if (!songList.length) return <p style={{color: 'yellow'}}>No se encontraron canciones.</p>;
@@ -14,12 +15,14 @@ const SearchResults = ({songList, isLoading, error, onAddSong}) => {
 
     return(
         <section>
-            <article>
-                <h2>Busqueda</h2>
-            </article>
-            <article className="flexSongs">
+            <h2 style={{marginBottom: 0}}>Busqueda</h2>
+            <p>Las canciones en <strong style={{color: 'yellow'}}>amarillo</strong> ya estan en Tus Canciones</p>
+            <FlexSongs>
                 {songList.map((song) => {
                     const { idTrack, title, artist } = song;
+                    const isInLibrary = library.some(
+                        (s) => s.idTrack === song.idTrack
+                    );
 
                     return (
                         <Song
@@ -28,10 +31,11 @@ const SearchResults = ({songList, isLoading, error, onAddSong}) => {
                             songName={title}
                             artist={artist}
                             onAdd={() => onAddSong(song)}
+                            isInLibrary={isInLibrary}
                         />
                     );
                 })}
-            </article>
+            </FlexSongs>
         </section>
     )
 };

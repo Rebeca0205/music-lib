@@ -1,4 +1,5 @@
 import React from "react"
+import { FormSearchBar, SearchButton, SearchInput } from "./styles";
 
 interface SearchBarProps {
     searchTerm: string;
@@ -13,15 +14,15 @@ const SearchBar = ({searchTerm, setSearchTerm, onSearch}: SearchBarProps) => {
     };
 
     return(
-        <form onSubmit={handleSubmit}>
-            <input
+        <FormSearchBar onSubmit={handleSubmit}>
+            <SearchInput
                 type="text"
-                placeholder="Escribe el nombre de un artista"
+                placeholder="Nombre de un artista"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button type="submit">Buscar</button>
-        </form>
+            <SearchButton type="submit">Buscar</SearchButton>
+        </FormSearchBar>
     );
 }
 

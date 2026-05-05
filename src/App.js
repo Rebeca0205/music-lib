@@ -1,6 +1,5 @@
 import React from 'react';
 import AppComp from './components/app';
-import './App.css';
 
 
 function App() {

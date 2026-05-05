@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams, useNavigate} from "react-router-dom";
+import { BackButton, SongDetails } from "./styles";
 
 type Song = {
     idTrack: string;
@@ -24,15 +25,15 @@ const SongDetail = ({ songs }: SongDetailProps) => {
     }
 
     return (
-        <section className="song-details">
+        <SongDetails>
             <h2>Detalle de canción</h2>
             <p><strong>Nombre:</strong> {song.title}</p>
             <p><strong>Álbum:</strong> {song.album}</p>
             <p><strong>Artista:</strong> {song.artist}</p>
-            <button onClick={() => navigate("/")}>
+            <BackButton onClick={() => navigate("/")}>
                 Volver a búsqueda
-            </button>
-        </section>
+            </BackButton>
+        </SongDetails>
     );
 };
 
